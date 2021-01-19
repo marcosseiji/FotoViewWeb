@@ -61,6 +61,9 @@ const canvas = document.createElement("canvas");
 
 screenshotButton.onclick = video.onclick = function () {
 
+    canvas.width = 240;
+    canvas.height = 320;
+
     if (video.videoWidth > video.videoHeight) {
 
         var factor = 1.5;
@@ -68,8 +71,7 @@ screenshotButton.onclick = video.onclick = function () {
         canvas.getContext("2d").drawImage(video, 120, 0, factor * video.videoWidth, factor * video.videoHeight, 0, 0, video.videoWidth, video.videoHeight);
 
     } else {
-        canvas.width = 240;
-        canvas.height = 320;
+
         canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
     }
 
