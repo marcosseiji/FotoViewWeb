@@ -72,6 +72,12 @@ screenshotButton.onclick = video.onclick = function () {
 
         canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
 
+        if (sUsrAg.indexOf("Safari") > -1) {
+            canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
+        } else {
+            canvas.getContext("2d").drawImage(video, 120, 0, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
+        }
+
     } else {
 
         canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
