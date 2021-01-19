@@ -61,44 +61,40 @@ const canvas = document.createElement("canvas");
 
 screenshotButton.onclick = video.onclick = function () {
 
-    canvas.width = 240;
-    canvas.height = 320;
+        canvas.width = 240;
+        canvas.height = 320;
 
-    if (video.videoWidth > video.videoHeight) {
+        if (video.videoWidth > video.videoHeight) {
 
-        let factor = 1.5,
-            videoW = factor * video.videoWidth,
-            videoH = factor * video.videoHeight;
+            let factor = 1.5,
+                videoW = factor * video.videoWidth,
+                videoH = factor * video.videoHeight;
 
-        canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
-
-        if (navigator.userAgent.indexOf("Safari") > -1) {
-            // canvas.getContext("2d").drawImage(video, 120, 0, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
-
-
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-
-
-            let sx = (video.videoWidth - canvas.width) / 2,
-                sy = (video.videoHeight - canvas.height) / 2;
-
-            canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth * 2.5, video.videoHeight * 2.5, 0, 0, canvas.width, canvas.height);
-            // canvas.getContext("2d").drawImage(video, sx, sy, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
-
-        } else {
             canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
+
+            if (navigator.userAgent.indexOf("Safari") > -1) {
+
+                if (video.videoWidth > video.videoHeight) {
+
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+
+                    canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth * 2.5, video.videoHeight * 2.5, 0, 0, canvas.width, canvas.height);
+
+
+                } else {
+                    canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
+                }
+
+            } else {
+
+                canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
+            }
+
+            img.src = canvas.toDataURL("image/webp");
+        };
+
+        function handleSuccess(stream) {
+            screenshotButton.disabled = false;
+            video.srcObject = stream;
         }
-
-    } else {
-
-        canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
-    }
-
-    img.src = canvas.toDataURL("image/webp");
-};
-
-function handleSuccess(stream) {
-    screenshotButton.disabled = false;
-    video.srcObject = stream;
-}
