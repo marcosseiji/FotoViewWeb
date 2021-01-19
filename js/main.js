@@ -58,6 +58,9 @@ const screenshotButton = document.querySelector("#screenshot-button");
 const img = document.querySelector("#screenshot img");
 const video = document.querySelector("#video");
 const canvas = document.createElement("canvas");
+const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
+    return p.toString() === "[object SafariRemoteNotification]";
+})(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
 screenshotButton.onclick = video.onclick = function () {
 
@@ -72,7 +75,7 @@ screenshotButton.onclick = video.onclick = function () {
 
         canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
 
-        if (navigator.userAgent.indexOf("Safari") > -1) {
+        if (isSafari) {
 
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
