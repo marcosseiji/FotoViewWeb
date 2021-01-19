@@ -63,10 +63,9 @@ screenshotButton.onclick = video.onclick = function () {
 
     if (video.videoWidth > video.videoHeight) {
 
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        var factor = 1.5;
 
-        canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth * 2.5, video.videoHeight * 2.5, 0, 0, canvas.width , canvas.height);
+        canvas.getContext("2d").drawImage(video, 120, 0, factor * video.videoWidth, factor * video.videoHeight, 0, 0, video.videoWidth, video.videoHeight);
 
     } else {
         canvas.width = 240;
