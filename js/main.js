@@ -66,9 +66,11 @@ screenshotButton.onclick = video.onclick = function () {
 
     if (video.videoWidth > video.videoHeight) {
 
-        var factor = 1.5;
+        let factor = 1.5,
+            videoW = factor * video.videoWidth,
+            videoH = factor * video.videoHeight;
 
-        canvas.getContext("2d").drawImage(video, 120, 0, factor * video.videoWidth, factor * video.videoHeight, 0, 0, video.videoWidth, video.videoHeight);
+        canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH 0, 0, video.videoWidth, video.videoHeight);
 
     } else {
 
