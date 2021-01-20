@@ -58,40 +58,39 @@ const screenshotButton = document.querySelector("#screenshot-button");
 const img = document.querySelector("#screenshot img");
 const video = document.querySelector("#video");
 const canvas = document.createElement("canvas");
-const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
-    return p.toString() === "[object SafariRemoteNotification]";
-})(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
 screenshotButton.onclick = video.onclick = function () {
 
-    canvas.width = 240;
-    canvas.height = 320;
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var imageObj = new Image();
 
-    if (video.videoWidth > video.videoHeight) {
+    imageObj.onload = function () {
+        let sourceX = 120,
+            sourceY = 0,
+            sourceWidth = 240,
+            sourceHeight = 320,
+            destWidth = sourceWidth,
+            destHeight = sourceHeight,
+            destX = canvas.width / 2 - destWidth / 2,
+            destY = canvas.height / 2 - destHeight / 2;
 
-        let factor = 1.5,
-            videoW = factor * video.videoWidth,
-            videoH = factor * video.videoHeight;
+        if (video.videoWidth > video.videoHeight) {
 
-        canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
+            let factor = 1.5,
+                videoW = factor * sourceWidth,
+                videoH = factor * sourceHeight;
 
-        if (isSafari) {
-
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-
-            canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth * 2.5, video.videoHeight * 2.5, 0, 0, canvas.width, canvas.height);
+            context.drawImage(video, sourceX, sourceY, videoW, videoH, destX, destY, destWidth, destHeight);
 
         } else {
-            canvas.getContext("2d").drawImage(video, 120, 0, videoW, videoH, 0, 0, video.videoWidth, video.videoHeight);
+            context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, destWidth, destHeight);
         }
 
-    } else {
+    };
 
-        canvas.getContext("2d").drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, canvas.width, canvas.height);
-    }
+    imageObj.src = canvas.toDataURL("image/webp");
 
-    img.src = canvas.toDataURL("image/webp");
 };
 
 function handleSuccess(stream) {
