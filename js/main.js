@@ -85,7 +85,11 @@ closeCamera.onclick = function () {
     video.pause();
     video.currentTime = 0;
 
-    videoSelect = '';
+    var select = document.getElementById("videoSource");
+    var length = select.options.length;
+    for (var i = length - 1; i >= 0; i--) {
+        select.options[i] = null;
+    }
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
