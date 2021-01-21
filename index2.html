@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smart Pass</title>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.977.0" data-gr-ext-installed="">
+    <app>
+        <div class="containerLogin">
+            <div class="wrapperContainer">
+                <div class="wrapperLogin">
+                    <h3 style="text-align: center;">Registro - <b>Smart Pass</b></h3>
+                    <div style="margin: auto;">
+                        <div id="takepicture" class="camera-container">
+                            <div class="toastmessager-container info" style="position: absolute">
+                            </div>
+                            <div style="display: block;">
+                                <img id="initialimage"
+                                    src="https://s3-sa-east-1.amazonaws.com/konitech.smartpass/Dev/Images/2020/8/256eeb95efcdaf3f8498ea3913c38a20.PNG"
+                                    style="width:240px; height:320px; object-fit: cover;">
+                                
+                                    <button class="btn" title="abrir camera" onclick="StartWebCam">
+                                        Abrir Camera
+                                    <i class="oi oi-camera-slr"></i>
+                                </button>
+                                <input type="file" id="inputfile-takepicture" style="display: none; "
+                                    _bl_fe193e52-9659-402f-bef0-d2d587b695ee="">
+
+                                <button class="btn btn-fileupload" title="carregar arquivo"
+                                    onclick="document.getElementById('inputfile-takepicture').click(); ">
+                                    <i class="oi oi-arrow-thick-top"></i>
+                                    Carregar Foto
+                                </button>
+                            </div>
+
+                            <div style="display: none; ">
+
+                                <video id="video" style="width:240px; height:320px; ">Câmera
+                                    indisponível.</video>
+                                <button id="startbutton" class="btn" title="bater foto">
+    
+                                    <i class="oi oi-aperture"></i>
+                                </button>
+
+                            </div>
+
+
+                            <div style="display: none;">
+
+                                <img id="photo" style="width:240px; height:320px; "
+                                    _bl_585d4461-7660-45b8-b471-a93418780258="">
+
+                                <button id="clearpicturebutton" class="btn btn-reject" title="rejeitar foto">
+
+                                    <i class="oi oi-x"></i>
+                                </button>
+
+                                <button class="btn btn-accept" title="aceitar foto">
+
+                                    <i class="oi oi-check"></i>
+                                </button>
+
+                            </div>
+
+
+
+                            <div style="display: none; ">
+                                <canvas id="canvas"></canvas>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row" style="padding-top: 20px;">
+
+                        <label class="col-sm-2 col-form-label">Nome</label>
+                        <div class="col-sm-10">
+
+                            <input type="text" class="form-control" readonly="">
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                        <label class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+
+                            <input type="text" class="form-control" readonly="">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="toastmessager-container none" style="position: relative">
+
+
+
+                    </div>
+
+
+                    <div style="text-align: center; padding-top:10px;">
+
+                        <button class="btn btn-success" title="salvar">
+
+                            ACEITAR
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        
+    </app>
+
+
+    <script src="js/camera222.js"></script>
+
+</body>
+
+</html>
