@@ -19,8 +19,7 @@ var videoSelect = document.querySelector('select#videoSource');
 
 function gotStream(stream) {
     window.stream = stream;
-    videoSelect.selectedIndex = [...videoSelect.options].
-    findIndex(option => option.text === stream.getVideoTracks()[0].label);
+    videoSelect.selectedIndex = [...videoSelect.options].findIndex(option => option.text === stream.getVideoTracks()[0].label);
     videoElement.srcObject = stream;
 }
 
@@ -85,6 +84,8 @@ closeCamera.onclick = function () {
 
     video.pause();
     video.currentTime = 0;
+
+    videoSelect = '';
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
